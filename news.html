@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>News app</title>
+        <link rel="stylesheet" href="news.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+
+    <script>
+        function get_data() {
+            fetch('http://newsapi.org/v2/everything?q=climate&sortBy=publishedAt&apiKey=f4a7cc07790747a88ad8519c05a8e531')
+            .then(a => a.json())
+            .then(response => {
+                for (i =0 ; i<response.articles.length ; i++){
+                    document.getElementById("container").innerHTML+="<div id='news'><img src='"+response.articles[i].urlToImage+"'><h3>"+response.articles[i].title+"</h3><br><h4>"+response.articles[i].description+"</h4><hr>"
+                }
+            })
+        }
+        get_data();
+    </script>
+</html>
